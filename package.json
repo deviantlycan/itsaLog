@@ -1,0 +1,11 @@
+{
+  "name": "itsalog",
+  "version": "1.0.0",
+  "description": "Simple logger that contains a debug, warning, and info setting.",
+  "main": "itsaLog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Garrett the Intern",
+  "license": "ISC"
+}
