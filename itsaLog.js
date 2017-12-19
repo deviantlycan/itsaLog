@@ -1,5 +1,5 @@
 // Default settings to false, changed in constructor
-var modSettings = {  
+var modSettings = {
 	debugModeOn: false,
 	infoModeOn: false,
 	warningModeOn: false,
@@ -64,21 +64,21 @@ function debug(message){
 }
 function error(message, callback){
 	callback = (typeof callback === 'function') ? callback : function() {};
-	if (message){
-		try{
-			console.error(modSettings.errorStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
-			callback(message);
-		} catch (err) { 
-			console.error(modSettings.errorStr + modulePrint + " - " + message);
-			callback(message);
-		}
-		return true;
+	if (!message){return false;}
+	
+	try{
+		console.error(modSettings.errorStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
+		callback(message);
+	} catch (err) { 
+		console.error(modSettings.errorStr + modulePrint + " - " + message);
+		callback(message);
 	}
-	return false;
+	return true;
 }
+
 function info(message){
 	if (modSettings.infoModeOn){
-		console.error(modSettings.infoStr + message);		
+		console.log(modSettings.infoStr + message);		
 	}
 	return true;
 }
@@ -86,9 +86,9 @@ function info(message){
 function warning(message){
 	if (modSettings.warningModeOn){
 		try{
-			console.error(modSettings.warningStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);		
+			console.log(modSettings.warningStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);		
 		} catch(err){
-			console.error(modSettings.warningStr + modulePrint + " - " + message);					
+			console.log(modSettings.warningStr + modulePrint + " - " + message);					
 		}
 	}
 	return true;
