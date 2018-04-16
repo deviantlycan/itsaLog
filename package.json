@@ -1,11 +1,17 @@
 {
   "name": "itsalog",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple logger that contains a debug, warning, and info setting.",
-  "main": "itsaLog.js",
+  "main": "ItsALog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Garrett the Intern",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "colors": "^1.2.1",
+    "log": "^1.4.0",
+    "path": "^0.12.7"
+  }
 }
