@@ -1,4 +1,5 @@
-const itsaLog = require('./itsaLog.js');
+const ItsaLog = require('./itsaLog.js').Logs;
+const modSettings2 = require('./itsaLog.js').modSettings;
 
 
 // Settings to be used to create logger from external object there is now an object on itsaLog :)
@@ -12,9 +13,8 @@ var modSettings = {
 		warningStr: "==-- WARNING: "
 };
 
-const logger = new itsaLog.Logs("ModuleName", modSettings);
+const logger = new ItsaLog("ModuleName", modSettings);
 //create a new itsaLog modSettings
-const modSettings2 = new itsaLog.modSettings(true, true, true);
 
 main();
 secondLogInstance();
@@ -57,7 +57,7 @@ function callbackErrorTest(callback){
 }
 
 function secondLogInstance() {
-    const logger2 = new itsaLog.Logs("ModuleName2", modSettings2);
+    const logger2 = new ItsaLog("ModuleName2", modSettings2);
     // logger.createLog("ModuleName", modSettings);
     logger2.info("Thanks for choosing itsaLog! \nThe following is a brief tutorial on how to use it!");
     logger2.info("At any point, you can change your settings by either calling \"createLog\" again, or calling individual setters");
