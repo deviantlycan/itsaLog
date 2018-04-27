@@ -1,9 +1,9 @@
 const ItsaLog = require('./itsaLog.js').Logs;
-const modSettings2 = require('./itsaLog.js').logSettings;
+const logSettings2 = require('./itsaLog.js').logSettings;
 
 
 // Settings to be used to create logger from external object there is now an object on itsaLog :)
-var modSettings = {
+var logSettings = {
 		debugModeOn: true,
 		infoModeOn: true,
 		warningModeOn: true,
@@ -13,16 +13,16 @@ var modSettings = {
 		warningStr: "==-- WARNING: "
 };
 
-const logger = new ItsaLog("ModuleName", modSettings);
-//create a new itsaLog modSettings
+const logger = new ItsaLog("ModuleName", logSettings);
+//create a new itsaLog logSettings
 
 main();
 secondLogInstance();
 function main(){
 
-	// logger.createLog("ModuleName", modSettings);
+	// logger.createLog("ModuleName", logSettings);
 	logger.info("Thanks for choosing itsaLog! \nThe following is a brief tutorial on how to use it!");
-	logger.info("At any point, you can change your settings by either calling \"createLog\" again, or calling individual setters");
+	logger.info("At any point, you can change your settings by calling individual setters on the object");
 	logger.setInfo(false);
 	logger.info("This line will only appear if the setter was passed true, or the program is broken.");
 	runDebug();
@@ -57,10 +57,9 @@ function callbackErrorTest(callback){
 }
 
 function secondLogInstance() {
-    const logger2 = new ItsaLog("ModuleName2", modSettings2);
-    // logger.createLog("ModuleName", modSettings);
-    logger2.info("Thanks for choosing itsaLog! \nThe following is a brief tutorial on how to use it!");
-    logger2.info("At any point, you can change your settings by either calling \"createLog\" again, or calling individual setters");
+    const logger2 = new ItsaLog("ModuleName2", logSettings2);
+    // logger.createLog("ModuleName", logSettings);
+    logger2.info("Thanks for choosing itsaLog!");
     logger2.setInfo(false);
     logger2.info("This line will only appear if the setter was passed true, or the program is broken.");
     logger2.setInfo(true);
