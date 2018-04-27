@@ -1,18 +1,9 @@
 const ItsaLog = require('./itsaLog.js').Logs;
-const logSettings2 = require('./itsaLog.js').logSettings;
+const LogSettings = require('./itsaLog.js').logSettings;
 
 
 // Settings to be used to create logger from external object there is now an object on itsaLog :)
-var logSettings = {
-		debugModeOn: true,
-		infoModeOn: true,
-		warningModeOn: true,
-		debugStr: "==-- Debug: ",
-		errorStr: "==-- ERROR: ",
-		infoStr: "==-- INFO: ",
-		warningStr: "==-- WARNING: "
-};
-
+var logSettings = new LogSettings(true, true, true, true, true, true);
 const logger = new ItsaLog("ModuleName", logSettings);
 //create a new itsaLog logSettings
 
@@ -28,6 +19,7 @@ function main(){
 	runDebug();
 	logger.setInfo(true);
 	logger.info("Good luck in your coding adventures!");
+    testFine();
 
 
 }
@@ -56,7 +48,10 @@ function callbackErrorTest(callback){
 	callback("Successful Callback Error Test");
 }
 
+
 function secondLogInstance() {
+
+    const logSettings2 = new LogSettings(true, true, true, false, false, false);
     const logger2 = new ItsaLog("ModuleName2", logSettings2);
     // logger.createLog("ModuleName", logSettings);
     logger2.info("Thanks for choosing itsaLog!");
@@ -71,5 +66,21 @@ function secondLogInstance() {
     logger2.warning("You can also log error messages pretty easily, like so:");
     logger2.error(" You can log errors");
 
+    // logger2.setFine(true);
+    logger2.fine("This is fine!!");
+    // logger2.setFiner(true);
+    logger2.finer("This is finer!");
+    // logger2.setFinest(true);
+    logger2.finest("This is finest!");
+}
+
+
+function testFine() {
+    logger.setFine(true);
+    logger.fine("This is fine!!");
+    logger.setFiner(true);
+    logger.finer("This is finer!");
+    logger.setFinest(true);
+    logger.finest("This is finest!");
 
 }
