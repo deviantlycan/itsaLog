@@ -1,16 +1,92 @@
-// Default settings to false, changed in constructor
-var modSettings = {
-	debugModeOn: false,
-	infoModeOn: false,
-	warningModeOn: false,
-	debugStr: "==-- Debug: ",
-	errorStr: "==-- ERROR: ",
-	infoStr: "==-- INFO: ",
-	warningStr: "==-- WARNING: "
-}
-
-var modulePrint; // Set in constructor
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var modSettings = /** @class */ (function () {
+    function modSettings(debugModeOn, infoModeOn, warningModeOn) {
+        this._debugModeOn = false;
+        this._infoModeOn = false;
+        this._warningModeOn = false;
+        this._debugStr = "==-- Debug: ";
+        this._errorStr = "==-- ERROR: ";
+        this._infoStr = "==-- INFO: ";
+        this._warningStr = "==-- WARNING: ";
+        this._debugModeOn = debugModeOn;
+        this._infoModeOn = infoModeOn;
+        this._warningModeOn = warningModeOn;
+    }
+    Object.defineProperty(modSettings.prototype, "debugModeOn", {
+        get: function () {
+            return this._debugModeOn;
+        },
+        set: function (value) {
+            this._debugModeOn = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "infoModeOn", {
+        get: function () {
+            return this._infoModeOn;
+        },
+        set: function (value) {
+            this._infoModeOn = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "warningModeOn", {
+        get: function () {
+            return this._warningModeOn;
+        },
+        set: function (value) {
+            this._warningModeOn = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "debugStr", {
+        get: function () {
+            return this._debugStr;
+        },
+        set: function (value) {
+            this._debugStr = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "errorStr", {
+        get: function () {
+            return this._errorStr;
+        },
+        set: function (value) {
+            this._errorStr = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "infoStr", {
+        get: function () {
+            return this._infoStr;
+        },
+        set: function (value) {
+            this._infoStr = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(modSettings.prototype, "warningStr", {
+        get: function () {
+            return this._warningStr;
+        },
+        set: function (value) {
+            this._warningStr = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return modSettings;
+}());
+exports.modSettings = modSettings;
+// Set in constructor
 /**
  * Logger constructor
  * @params moduleInput Name of the caller module
@@ -18,92 +94,64 @@ var modulePrint; // Set in constructor
  * "debugModeOn," "infoModeOn," and "warningModeOn." Note that you can also
  * set their string settings as well
  */
-function createLog(moduleInput, settingsObject){
-	modulePrint = moduleInput;
-	for(var element in settingsObject){ 
-		if(settingsObject.hasOwnProperty(element)){
-			switch(element){
-				case "debugModeOn":
-					modSettings.debugModeOn = settingsObject.debugModeOn;
-					break;
-				case "infoModeOn":
-					modSettings.infoModeOn = settingsObject.infoModeOn;
-					break;
-				case "warningModeOn":
-					modSettings.warningModeOn = settingsObject.warningModeOn;
-					break;
-				case "debugStr":
-					modSettings.debugStr = settingsObject.debugStr;
-					break;
-				case "infoStr":
-					modSettings.infoStr = settingsObject.infoStr;
-					break;
-				case "errorStr":
-					modSettings.errorStr = settingsObject.errorStr;
-					break;
-				case "warningStr":
-					modSettings.warningStr = settingsObject.warningStr;
-					break;
-			}
-		}
-	} 
-};
-
-/*
- * Logging functions
- */
-function debug(message){
-	if (modSettings.debugModeOn){
-		try{
-			console.log(modSettings.debugStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
-		} catch (err){
-			console.log(modSettings.debugStr + modulePrint + " - " + message);
-		}
-	}
-	return true;
-}
-function error(message, callback){
-	callback = (typeof callback === 'function') ? callback : function() {};
-	if (!message){return false;}
-	
-	try{
-		console.error(modSettings.errorStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
-		callback(message);
-	} catch (err) { 
-		console.error(modSettings.errorStr + modulePrint + " - " + message);
-		callback(message);
-	}
-	return true;
-}
-
-function info(message){
-	if (modSettings.infoModeOn){
-		console.log(modSettings.infoStr + message);		
-	}
-	return true;
-}
-
-function warning(message){
-	if (modSettings.warningModeOn){
-		try{
-			console.log(modSettings.warningStr + modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);		
-		} catch(err){
-			console.log(modSettings.warningStr + modulePrint + " - " + message);					
-		}
-	}
-	return true;
-} 
-
-function setDebug(activationFlag){
-	modSettings.debugModeOn = (activationFlag == true ? true : false);
-}
-
-function setInfo(activationFlag){
-	modSettings.infoModeOn = (activationFlag == true ? true : false);
-}
-
-function setWarning(activationFlag){
-	modSettings.warningModeOn = (activationFlag == true ? true : false);
-}
- 
-module.exports = {info, debug, error, warning, createLog, setWarning, setInfo, setDebug}; 
+var Logs = /** @class */ (function () {
+    function Logs(modulePrint, settingsObject) {
+        this.modulePrint = modulePrint;
+        this.settingsObject = settingsObject;
+    }
+    Logs.prototype.debug = function (message) {
+        if (this.settingsObject.debugModeOn) {
+            try {
+                console.log(this.settingsObject.debugStr + this.modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
+            }
+            catch (err) {
+                console.log(this.settingsObject.debugStr + this.modulePrint + " - " + message);
+            }
+        }
+        return true;
+    };
+    Logs.prototype.error = function (message, callback) {
+        callback = (typeof callback === 'function') ? callback : function () {
+        };
+        if (!message) {
+            return false;
+        }
+        try {
+            console.error(this.settingsObject.errorStr + this.modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
+            callback(message);
+        }
+        catch (err) {
+            console.error(this.settingsObject.errorStr + this.modulePrint + " - " + message);
+            callback(message);
+        }
+        return true;
+    };
+    Logs.prototype.info = function (message) {
+        if (this.settingsObject.infoModeOn) {
+            console.log(this.settingsObject.infoStr + message);
+        }
+        return true;
+    };
+    Logs.prototype.warning = function (message) {
+        if (this.settingsObject.warningModeOn) {
+            try {
+                console.log(this.settingsObject.warningStr + this.modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
+            }
+            catch (err) {
+                console.log(this.settingsObject.warningStr + this.modulePrint + " - " + message);
+            }
+        }
+        return true;
+    };
+    Logs.prototype.setDebug = function (activationFlag) {
+        this.settingsObject.debugModeOn = (activationFlag == true ? true : false);
+    };
+    Logs.prototype.setInfo = function (activationFlag) {
+        this.settingsObject.infoModeOn = (activationFlag == true ? true : false);
+    };
+    Logs.prototype.setWarning = function (activationFlag) {
+        this.settingsObject.warningModeOn = (activationFlag == true ? true : false);
+    };
+    return Logs;
+}());
+exports.Logs = Logs;
