@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var modSettings = /** @class */ (function () {
-    function modSettings(debugModeOn, infoModeOn, warningModeOn) {
+var logSettings = /** @class */ (function () {
+    function logSettings(debugModeOn, infoModeOn, warningModeOn) {
         this._debugModeOn = false;
         this._infoModeOn = false;
         this._warningModeOn = false;
@@ -13,7 +13,7 @@ var modSettings = /** @class */ (function () {
         this._infoModeOn = infoModeOn;
         this._warningModeOn = warningModeOn;
     }
-    Object.defineProperty(modSettings.prototype, "debugModeOn", {
+    Object.defineProperty(logSettings.prototype, "debugModeOn", {
         get: function () {
             return this._debugModeOn;
         },
@@ -23,7 +23,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "infoModeOn", {
+    Object.defineProperty(logSettings.prototype, "infoModeOn", {
         get: function () {
             return this._infoModeOn;
         },
@@ -33,7 +33,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "warningModeOn", {
+    Object.defineProperty(logSettings.prototype, "warningModeOn", {
         get: function () {
             return this._warningModeOn;
         },
@@ -43,7 +43,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "debugStr", {
+    Object.defineProperty(logSettings.prototype, "debugStr", {
         get: function () {
             return this._debugStr;
         },
@@ -53,7 +53,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "errorStr", {
+    Object.defineProperty(logSettings.prototype, "errorStr", {
         get: function () {
             return this._errorStr;
         },
@@ -63,7 +63,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "infoStr", {
+    Object.defineProperty(logSettings.prototype, "infoStr", {
         get: function () {
             return this._infoStr;
         },
@@ -73,7 +73,7 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(modSettings.prototype, "warningStr", {
+    Object.defineProperty(logSettings.prototype, "warningStr", {
         get: function () {
             return this._warningStr;
         },
@@ -83,9 +83,9 @@ var modSettings = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    return modSettings;
+    return logSettings;
 }());
-exports.modSettings = modSettings;
+exports.logSettings = logSettings;
 // Set in constructor
 /**
  * Logger constructor
@@ -128,17 +128,17 @@ var Logs = /** @class */ (function () {
     };
     Logs.prototype.info = function (message) {
         if (this.settingsObject.infoModeOn) {
-            console.log(this.settingsObject.infoStr + message);
+            console.info(this.settingsObject.infoStr + message);
         }
         return true;
     };
     Logs.prototype.warning = function (message) {
         if (this.settingsObject.warningModeOn) {
             try {
-                console.log(this.settingsObject.warningStr + this.modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
+                console.warn(this.settingsObject.warningStr + this.modulePrint + "." + arguments.callee.caller.name.toString() + " - " + message);
             }
             catch (err) {
-                console.log(this.settingsObject.warningStr + this.modulePrint + " - " + message);
+                console.warn(this.settingsObject.warningStr + this.modulePrint + " - " + message);
             }
         }
         return true;

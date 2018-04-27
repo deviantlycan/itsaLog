@@ -1,5 +1,5 @@
 const ItsaLog = require('./itsaLog.js').Logs;
-const modSettings2 = require('./itsaLog.js').modSettings;
+const modSettings2 = require('./itsaLog.js').logSettings;
 
 
 // Settings to be used to create logger from external object there is now an object on itsaLog :)
