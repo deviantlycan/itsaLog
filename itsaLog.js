@@ -14,7 +14,7 @@ var logSettings = /** @class */ (function () {
         this._fineModeOn = fineModeOn;
         this._finerModeOn = finerModeOn;
         this._finestModeOn = finestModeOn;
-        this._debugStr = "==-- Debug: ";
+        this._debugStr = "==-- DEBUG: ";
         this._errorStr = "==-- ERROR: ";
         this._infoStr = "==-- INFO: ";
         this._fineStr = "==-- FINE: ";
