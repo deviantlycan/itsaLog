@@ -1,11 +1,16 @@
 {
   "name": "itsalog",
-  "version": "1.0.0",
-  "description": "Simple logger that contains a debug, warning, and info setting.",
+  "version": "2.0.0",
+  "description": "Simple logger",
   "main": "itsaLog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Garrett the Intern",
+  "author": "Deviant Lycan (http://deviantlycan.com/)",
+  "contributors": [
+    "Scott McArthur <scott@antbytes.com>",
+    "Garrett the Intern",
+    "John Jenkins",
+  ]
   "license": "ISC"
 }
